@@ -1,0 +1,324 @@
+import { useEffect, useState } from 'react';
+import { api } from '../lib/api';
+
+/* All real projects from https://github.com/mahnoorimranawan22 — repos, links,
+   descriptions, tech stacks and features are taken from the actual repositories.
+   Live demos point to real deployments (GitHub Pages / Netlify / Vercel).
+   The data lives in the shared data/projects.json (single source of truth) —
+   this component renders it immediately and upgrades it from the API when
+   the backend is reachable (fallback keeps the grid alive offline). */
+const GITHUB_BASE = 'https://github.com/mahnoorimranawan22';
+
+import PROJECTS_DATA from '../../data/projects.json';
+
+const CATEGORIES = [
+    { id: 'all', label: 'All' },
+    { id: 'ai', label: 'AI' },
+    { id: 'fullstack', label: 'Full-Stack' },
+    { id: 'frontend', label: 'Frontend' },
+];
+
+/* Live screenshot service for projects with a real deployed demo.
+   Falls back to a branded cover tile if the screenshot cannot load. */
+const screenshotUrl = (url) =>
+    `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=900&h=560`;
+
+function ProjectCover({ project }) {
+    const [imgFailed, setImgFailed] = useState(false);
+
+    // Priority: local interface screenshot > live-demo screenshot > branded tile
+    const coverSrc = project.coverImage || (project.demo && screenshotUrl(project.demo));
+
+    if (!coverSrc || imgFailed) {
+        return (
+            <div className="project-cover project-cover-fallback" aria-hidden="true">
+                <span className="banner-icon">{project.icon}</span>
+            </div>
+        );
+    }
+
+    return (
+        <div className="project-cover">
+            <img
+                src={coverSrc}
+                alt={`${project.title} interface preview`}
+                loading="lazy"
+                onError={() => setImgFailed(true)}
+            />
+        </div>
+    );
+}
+
+export default function Projects() {
+    const [filter, setFilter] = useState('all');
+    const [activeStudy, setActiveStudy] = useState(null);
+    const [projects, setProjects] = useState(PROJECTS_DATA);
+
+    // Prefer live API data; fall back silently to the bundled data when the
+    // backend is offline (dev without server, static build preview, etc.).
+    useEffect(() => {
+        let cancelled = false;
+        api.getProjects()
+            .then((data) => {
+                if (!cancelled && Array.isArray(data) && data.length > 0) {
+                    setProjects(data);
+                }
+            })
+            .catch(() => {
+                /* Backend offline — bundled data already rendered. */
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
+    // Lock body-scroll while modal is open
+    useEffect(() => {
+        if (activeStudy) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [activeStudy]);
+
+    // Ensure freshly filtered cards are visible (reveal is normally added by the
+    // global IntersectionObserver on first paint).
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            document
+                .querySelectorAll('.projects-grid .reveal:not(.is-visible)')
+                .forEach((el) => el.classList.add('is-visible'));
+        }, 60);
+        return () => clearTimeout(timer);
+    }, [filter]);
+
+    const visibleProjects =
+        filter === 'all' ? projects : projects.filter((p) => p.category === filter);
+
+    return (
+        <section className="projects" id="projects">
+            <div className="container">
+                <div className="section-head reveal">
+                    <p className="eyebrow">Portfolio</p>
+                    <h2 className="section-title">
+                        📁 My <span className="gradient-text">Projects</span>
+                    </h2>
+                    <p className="section-subtitle">
+                        All of my real projects — from full-stack systems to AI-powered apps and responsive
+                        websites
+                    </p>
+                </div>
+
+                <div className="project-filters reveal" role="group" aria-label="Filter projects by category">
+                    {CATEGORIES.map((cat) => (
+                        <button
+                            key={cat.id}
+                            className={`filter-btn${filter === cat.id ? ' active' : ''}`}
+                            onClick={() => setFilter(cat.id)}
+                            aria-pressed={filter === cat.id}
+                        >
+                            {cat.label}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="projects-grid">
+                    {visibleProjects.map((project, index) => (
+                        <article
+                            className={`project-card glass-panel reveal${project.featured ? ' featured' : ''}`}
+                            key={project.title}
+                            style={{ '--reveal-delay': `${(index % 3) * 0.08}s` }}
+                        >
+                            <ProjectCover project={project} />
+
+                            <div className="project-body">
+                                {project.featured && (
+                                    <span className="featured-badge-tag">
+                                        <i className="fas fa-star" aria-hidden="true"></i> Featured Project
+                                    </span>
+                                )}
+                                <div className="project-heading">
+                                    <h3>{project.title}</h3>
+                                    <span className="project-icon" aria-hidden="true">{project.icon}</span>
+                                </div>
+
+                                <p>{project.description}</p>
+
+                                <ul className="project-features">
+                                    {project.features.map((feature) => (
+                                        <li className="project-feature" key={feature}>
+                                            <i className="fas fa-circle-check" aria-hidden="true"></i>
+                                            <span>{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <div className="project-tags">
+                                    {project.tech.map((tag) => (
+                                        <span className="chip" key={tag}>{tag}</span>
+                                    ))}
+                                </div>
+
+                                <div className="project-links">
+                                    <a
+                                        href={project.repo}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn btn-secondary btn-sm"
+                                    >
+                                        <i className="fab fa-github" aria-hidden="true"></i> View Code
+                                    </a>
+                                    {project.demo && (
+                                        <a
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn btn-primary btn-sm"
+                                        >
+                                            <i className="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+                                        </a>
+                                    )}
+                                    {project.caseStudy && (
+                                        <button
+                                            type="button"
+                                            onClick={() => setActiveStudy(project)}
+                                            className="btn btn-accent btn-sm"
+                                        >
+                                            <i className="fas fa-book-open" aria-hidden="true"></i> Case Study
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+
+                <div className="projects-cta reveal">
+                    <a
+                        href={`${GITHUB_BASE}?tab=repositories`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-secondary btn-lg"
+                    >
+                        <i className="fab fa-github" aria-hidden="true"></i> Follow me on GitHub
+                    </a>
+                </div>
+            </div>
+
+            {/* Case Study Modal Overlay */}
+            {activeStudy && (
+                <div
+                    className="case-study-overlay"
+                    onClick={() => setActiveStudy(null)}
+                    aria-modal="true"
+                    role="dialog"
+                >
+                    <div className="case-study-modal" onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="close-modal-btn"
+                            onClick={() => setActiveStudy(null)}
+                            aria-label="Close Case Study"
+                        >
+                            <i className="fas fa-times" aria-hidden="true"></i>
+                        </button>
+
+                        <div className="case-study-grid">
+                            <div className="case-study-sidebar">
+                                <div className="case-study-header">
+                                    <span className="case-study-icon" aria-hidden="true">{activeStudy.icon}</span>
+                                    <h3>{activeStudy.title}</h3>
+                                </div>
+                                <div className="case-study-meta-list">
+                                    <div className="meta-row">
+                                        <strong>Role:</strong> <span>Full-Stack & AI Engineer</span>
+                                    </div>
+                                    <div className="meta-row">
+                                        <strong>Category:</strong> <span>
+                                            {activeStudy.category === 'ai'
+                                                ? 'Artificial Intelligence'
+                                                : activeStudy.category === 'fullstack'
+                                                    ? 'Full-Stack Development'
+                                                    : 'Frontend'}
+                                        </span>
+                                    </div>
+                                    <div className="meta-row tech-meta-row">
+                                        <strong>Technologies:</strong>
+                                        <div className="meta-tags">
+                                            {activeStudy.tech.map(t => <span key={t} className="chip">{t}</span>)}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="case-study-sidebar-links">
+                                    <a
+                                        href={activeStudy.repo}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn btn-secondary w-full text-center"
+                                    >
+                                        <i className="fab fa-github" aria-hidden="true"></i> View Code
+                                    </a>
+                                    {activeStudy.demo ? (
+                                        <a
+                                            href={activeStudy.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn btn-primary w-full text-center"
+                                        >
+                                            <i className="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+                                        </a>
+                                    ) : (
+                                        <div className="btn btn-disabled w-full text-center opacity-50 cursor-not-allowed">
+                                            <i className="fas fa-video-slash" aria-hidden="true"></i> Demo Offline
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="case-study-content-scroll">
+                                <section className="study-section">
+                                    <h4><i className="fas fa-exclamation-circle" aria-hidden="true"></i> The Problem</h4>
+                                    <p>{activeStudy.caseStudy.problem}</p>
+                                </section>
+
+                                <section className="study-section">
+                                    <h4><i className="fas fa-lightbulb" aria-hidden="true"></i> The Solution</h4>
+                                    <p>{activeStudy.caseStudy.solution}</p>
+                                </section>
+
+                                <section className="study-section">
+                                    <h4><i className="fas fa-list-check" aria-hidden="true"></i> Key Features</h4>
+                                    <ul className="study-bullet-list">
+                                        {activeStudy.caseStudy.features.map(f => (
+                                            <li key={f}>
+                                                <i className="fas fa-circle-check" aria-hidden="true"></i>
+                                                <span>{f}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+
+                                <section className="study-section">
+                                    <h4><i className="fas fa-sitemap" aria-hidden="true"></i> Architecture Flow</h4>
+                                    <pre className="study-flow-diagram">{activeStudy.caseStudy.architecture}</pre>
+                                </section>
+
+                                <section className="study-section">
+                                    <h4><i className="fas fa-code-fork" aria-hidden="true"></i> My Contribution</h4>
+                                    <p>{activeStudy.caseStudy.contribution}</p>
+                                </section>
+
+                                <section className="study-section">
+                                    <h4><i className="fas fa-triangle-exclamation" aria-hidden="true"></i> Challenges & Solutions</h4>
+                                    <p>{activeStudy.caseStudy.challenges}</p>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </section>
+    );
+}

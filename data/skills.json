@@ -1,0 +1,112 @@
+{
+  "Frontend": [
+    {
+      "name": "HTML5",
+      "icon": "fab fa-html5",
+      "level": "90%",
+      "id": "html5"
+    },
+    {
+      "name": "CSS3",
+      "icon": "fab fa-css3-alt",
+      "level": "85%",
+      "id": "css3"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "fab fa-js",
+      "level": "80%",
+      "id": "javascript"
+    },
+    {
+      "name": "React.js",
+      "icon": "fab fa-react",
+      "level": "75%",
+      "id": "react-js"
+    }
+  ],
+  "Backend": [
+    {
+      "name": "Node.js",
+      "icon": "fab fa-node-js",
+      "level": "70%",
+      "id": "node-js"
+    },
+    {
+      "name": "Express.js",
+      "icon": "fas fa-server",
+      "level": "65%",
+      "id": "express-js"
+    }
+  ],
+  "Databases": [
+    {
+      "name": "SQLite",
+      "icon": "fas fa-database",
+      "level": "75%",
+      "id": "sqlite"
+    },
+    {
+      "name": "MongoDB",
+      "icon": "fas fa-leaf",
+      "level": "60%",
+      "id": "mongodb"
+    }
+  ],
+  "APIs": [
+    {
+      "name": "RESTful APIs",
+      "icon": "fas fa-network-wired",
+      "level": "80%",
+      "id": "restful-apis"
+    },
+    {
+      "name": "JSON Data",
+      "icon": "fas fa-file-code",
+      "level": "85%",
+      "id": "json-data"
+    }
+  ],
+  "AI": [
+    {
+      "name": "Prompt Engineering",
+      "icon": "fas fa-wand-magic-sparkles",
+      "level": "75%",
+      "id": "prompt-engineering"
+    },
+    {
+      "name": "LLM Orchestration",
+      "icon": "fas fa-brain",
+      "level": "65%",
+      "id": "llm-orchestration"
+    }
+  ],
+  "DevOps & Deployment": [
+    {
+      "name": "Vercel",
+      "icon": "fas fa-cloud",
+      "level": "75%",
+      "id": "vercel"
+    },
+    {
+      "name": "Railway",
+      "icon": "fas fa-terminal",
+      "level": "60%",
+      "id": "railway"
+    }
+  ],
+  "Tools": [
+    {
+      "name": "Git",
+      "icon": "fab fa-git-alt",
+      "level": "80%",
+      "id": "git"
+    },
+    {
+      "name": "GitHub",
+      "icon": "fab fa-github",
+      "level": "85%",
+      "id": "github"
+    }
+  ]
+}

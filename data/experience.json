@@ -1,0 +1,30 @@
+[
+  {
+    "period": "Present",
+    "tag": "Present",
+    "title": "AI & Advanced Systems",
+    "description": "Building installable AI-powered applications, managing Groq LLM API prompt integrations, and refining version control using Git.",
+    "id": "ai-advanced-systems"
+  },
+  {
+    "period": "2026",
+    "tag": "2026",
+    "title": "Full-Stack Transition",
+    "description": "Developed responsive Single-Page Applications in React + Vite, writing Node.js/Express REST APIs with local SQLite persistence.",
+    "id": "full-stack-transition"
+  },
+  {
+    "period": "Academic",
+    "tag": "Academic",
+    "title": "BS Software Engineering",
+    "description": "Pursuing undergraduate computer science studies focusing on OOP, system modularity, design patterns, and analysis of algorithms.",
+    "id": "bs-software-engineering"
+  },
+  {
+    "period": "Foundations",
+    "tag": "Foundations",
+    "title": "Core Web Engineering",
+    "description": "Mastered semantic HTML5 layout structures, modern CSS3 styling frameworks, and clean JavaScript ES6+ scripting mechanisms.",
+    "id": "core-web-engineering"
+  }
+]

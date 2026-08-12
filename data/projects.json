@@ -1,0 +1,311 @@
+[
+  {
+    "title": "AI Interview Coach",
+    "icon": "🎤",
+    "category": "ai",
+    "featured": true,
+    "description": "Practice technical interviews with an AI interviewer powered by Groq’s LLM — answer real questions and get instant, adaptive feedback.",
+    "repo": "https://github.com/mahnoorimranawan22/ai-interview-coach",
+    "demo": null,
+    "coverImage": "/projects/ai-interview-coach.png",
+    "tech": [
+      "React 19",
+      "Vite",
+      "Tailwind CSS 4",
+      "Express.js",
+      "SQLite",
+      "Groq API"
+    ],
+    "features": [
+      "AI interviewer with real-time feedback on your answers",
+      "Difficulty adapts to your responses as you practice",
+      "JWT sessions with SQLite persistence — no external database",
+      "Installable PWA, plus desktop (Electron) and mobile (Capacitor) builds"
+    ],
+    "caseStudy": {
+      "problem": "Technical interviews are high-stress and require rapid, adaptive, and detailed feedback to help candidates improve, but live mock interviews are expensive, stressful, and hard to schedule.",
+      "solution": "Developed a serverless, local-friendly React application connected to Node.js backend route controllers that orchestrate Groq's LLM completions API. The interviewer adapts question difficulty dynamically and returns targeted improvements based on transcripts.",
+      "features": [
+        "AI interviewer with real-time feedback on answers",
+        "Difficulty adapts to performance as you practice",
+        "JWT sessions with SQLite persistence",
+        "PWA installable app & desktop/mobile packaging"
+      ],
+      "architecture": "React Frontend [Client PWA]\n  ↓ HTTP Requests / CORS\nNode.js / Express Server [Routing]\n  ↓ JWT Authentication verification\nGroq API Inference [LLM prompts pipeline]\n  ↓ Returns adaptive question / feedback\nSQLite Database [Local file persistence]",
+      "contribution": "Migrated the application into a React + Vite SPA, implemented JWT token handshakes, constructed relational SQLite schemas, created the interactive mock curl terminal, and optimized layout design tokens.",
+      "challenges": "Handling native SQLite dependencies (better-sqlite3) in production environments. Resolved by implementing pure-JS JSON file-backed database adaptors for Railway/Vercel server environments."
+    },
+    "id": "ai-interview-coach"
+  },
+  {
+    "title": "AI-StudyMate",
+    "icon": "🎓",
+    "category": "ai",
+    "featured": true,
+    "description": "AI-powered study assistant combining a learning dashboard, interactive AI chat and built-in interview practice in one installable app.",
+    "repo": "https://github.com/mahnoorimranawan22/AI-StudyMate",
+    "demo": null,
+    "coverImage": "/projects/ai-studymate.png",
+    "tech": [
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "REST API",
+      "AI API",
+      "PWA"
+    ],
+    "features": [
+      "AI study assistant and interactive chat for any topic",
+      "Built-in AI interview coach for answer practice",
+      "Study dashboard to organize quizzes, notes and history",
+      "Installable PWA with service-worker offline caching"
+    ],
+    "caseStudy": {
+      "problem": "Students struggle to centralize learning resources, quizzes, and interview practice across multiple tools, leading to fragmented study patterns and lack of offline accessibility.",
+      "solution": "Built an consolidated learning dashboard combining interactive AI learning chat, progress-tracking quizzes, and service worker offline caching wrapped inside an installable Progressive Web App (PWA).",
+      "features": [
+        "AI study assistant and chat for any topic",
+        "Built-in interview practice loop",
+        "Dashboard to organize quizzes and transcripts",
+        "Service worker offline caching layer"
+      ],
+      "architecture": "PWA Client Interface (HTML/CSS/JS)\n  ↓ offline caching (Service Workers cache)\nNode.js / Express REST API\n  ↓\nOpenAI / Groq API Complete inference\n  ↓\nLocal Storage synchronization",
+      "contribution": "Integrated responsive layout designs, configured theme parameters, coded the PWA manifest declarations, and optimized network cache routers.",
+      "challenges": "Synchronizing quiz status and chat histories across page updates without losing context. Resolved using serialized localStorage cache layers."
+    },
+    "id": "ai-studymate"
+  },
+  {
+    "title": "Task Management System",
+    "icon": "📋",
+    "category": "fullstack",
+    "featured": false,
+    "description": "Full-stack task management platform with secure JWT authentication, a Node/Express REST API, MongoDB persistence and a responsive glassmorphism dashboard.",
+    "repo": "https://github.com/mahnoorimranawan22/task-management-system",
+    "demo": "https://task-management-system-noors.netlify.app/",
+    "coverImage": null,
+    "tech": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "JavaScript"
+    ],
+    "features": [
+      "Secure JWT authentication with bcrypt password encryption",
+      "Full task CRUD with priorities, categories, tags and due dates",
+      "Search, filter, sort and paginate tasks",
+      "Analytics dashboard with dark mode and toast notifications"
+    ],
+    "caseStudy": {
+      "problem": "Teams lack simple, fast, and secure tools to organize tasks, define priorities, and filter schedules, leading to delayed deliveries and poor task visibility.",
+      "solution": "Architected a responsive Glassmorphism dashboard executing full CRUD operations, secured with bcrypt password encryption and JWT signatures, with search, pagination, and sorting filters.",
+      "features": [
+        "Secure JWT Auth & bcrypt password hashing",
+        "Full dashboard CRUD with prioritization sorting",
+        "Advanced search, regex filtering, and pagination",
+        "Glassmorphism layout with toast alerts"
+      ],
+      "architecture": "React SPA Dashboard (Glassmorphism layout)\n  ↓ Secure HTTP Header (JWT token bearer)\nExpress API server router\n  ↓ MongoDB database queries (Mongoose)\nMongoDB Cloud Atlas (Cluster persistence)",
+      "contribution": "Designed the database schema collections, coded JWT token generation pipelines, and built the glassmorphism card layouts.",
+      "challenges": "Implementing efficient query pagination and search substring matching across dense task lists. Solved with index sorting and MongoDB query operators."
+    },
+    "id": "task-management-system"
+  },
+  {
+    "title": "Weather App Pro",
+    "icon": "🌤️",
+    "category": "frontend",
+    "featured": false,
+    "description": "Weather dashboard streaming live Open-Meteo data — city search, geolocation and a 5-day forecast wrapped in a glassmorphism UI.",
+    "repo": "https://github.com/mahnoorimranawan22/weather-app-pro",
+    "demo": "https://weather-app-pro-noors.netlify.app/",
+    "coverImage": null,
+    "tech": [
+      "HTML5",
+      "CSS3",
+      "JavaScript (ES6)",
+      "Open-Meteo API"
+    ],
+    "features": [
+      "City search with geocoding and current-location detection",
+      "Hourly breakdown plus 5-day forecast with UV and pressure metrics",
+      "Dark/light mode, favorites and history persisted to localStorage",
+      "Toast notifications for validation and network states"
+    ],
+    "id": "weather-app-pro"
+  },
+  {
+    "title": "Todo App Pro",
+    "icon": "✅",
+    "category": "frontend",
+    "featured": false,
+    "description": "Production-ready task dashboard built with modern ES6+ JavaScript — local persistence, live statistics and real-time search.",
+    "repo": "https://github.com/mahnoorimranawan22/todo-app-pro",
+    "demo": "https://todo-app-pro-noors.netlify.app/",
+    "coverImage": null,
+    "tech": [
+      "HTML5",
+      "CSS3",
+      "JavaScript (ES6+)"
+    ],
+    "features": [
+      "Tasks and theme preferences auto-sync to localStorage",
+      "Live progress bar and statistics cards",
+      "High / Medium / Low priority badges with automated sorting",
+      "Real-time substring search and custom toast notifications"
+    ],
+    "id": "todo-app-pro"
+  },
+  {
+    "title": "Smart Counter (Full-Stack)",
+    "icon": "🔢",
+    "category": "fullstack",
+    "featured": false,
+    "description": "Beginner-friendly full-stack counter with a Node/Express REST API, custom step sizes, counter history and keyboard shortcuts.",
+    "repo": "https://github.com/mahnoorimranawan22/smart-counter-fullstack",
+    "demo": "https://smart-counter-lime.vercel.app/",
+    "coverImage": null,
+    "tech": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "REST API"
+    ],
+    "features": [
+      "Increase, decrease and reset with custom step sizes",
+      "Frontend-to-backend GET/POST REST API communication",
+      "Counter history persisted with localStorage",
+      "Dark mode and keyboard shortcuts"
+    ],
+    "id": "smart-counter-full-stack"
+  },
+  {
+    "title": "AURÉLIA Fashion Store",
+    "icon": "👗",
+    "category": "frontend",
+    "featured": false,
+    "description": "A modern, responsive fashion store website with a clean and elegant UI for an online clothing store, built with HTML5 and CSS3.",
+    "repo": "https://github.com/mahnoorimranawan22/aurelia-fashion-store",
+    "demo": "https://mahnoorimranawan22.github.io/aurelia-fashion-store/",
+    "coverImage": null,
+    "tech": [
+      "HTML5",
+      "CSS3",
+      "Google Fonts",
+      "Font Awesome"
+    ],
+    "features": [
+      "Responsive homepage with navigation and hero section",
+      "Fashion categories and featured products",
+      "Shop, about and contact pages with a contact form",
+      "Clean, professional footer"
+    ],
+    "id": "aur-lia-fashion-store"
+  },
+  {
+    "title": "ClearVision Eye Care",
+    "icon": "👁️",
+    "category": "frontend",
+    "featured": false,
+    "description": "A premium, responsive eye care clinic website with appointment booking, dark mode, FAQ, gallery and testimonials.",
+    "repo": "https://github.com/mahnoorimranawan22/clearvision-eye-care",
+    "demo": "https://mahnoorimranawan22.github.io/clearvision-eye-care/",
+    "coverImage": null,
+    "tech": [
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
+    "features": [
+      "Responsive design with a modern, premium UI",
+      "Dark mode support",
+      "Appointment booking section",
+      "FAQ, gallery and testimonials"
+    ],
+    "id": "clearvision-eye-care"
+  },
+  {
+    "title": "Foodix Burger Website",
+    "icon": "🍔",
+    "category": "frontend",
+    "featured": false,
+    "description": "A responsive restaurant website featuring the Foodix burger section — product cards, a shopping cart and a modern food-restaurant layout.",
+    "repo": "https://github.com/mahnoorimranawan22/foodix-burger-website",
+    "demo": "https://mahnoorimranawan22.github.io/foodix-burger-website/",
+    "coverImage": null,
+    "tech": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "features": [
+      "Burger menu and product cards",
+      "Working shopping cart",
+      "Fully responsive design",
+      "Modern food-restaurant styling"
+    ],
+    "id": "foodix-burger-website"
+  },
+  {
+    "title": "SmartCalc Pro",
+    "icon": "🧮",
+    "category": "frontend",
+    "featured": false,
+    "description": "A professional calculator with a polished, responsive interface, built with HTML, CSS, JavaScript and Bootstrap.",
+    "repo": "https://github.com/mahnoorimranawan22/smartcalc-pro",
+    "demo": "https://mahnoorimranawan22.github.io/smartcalc-pro/",
+    "coverImage": null,
+    "tech": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "features": [
+      "Professional calculator interface built with Bootstrap",
+      "Clean, responsive layout across devices"
+    ],
+    "id": "smartcalc-pro"
+  },
+  {
+    "title": "Portfolio Website",
+    "icon": "🌐",
+    "category": "frontend",
+    "featured": false,
+    "description": "My personal portfolio website — a responsive site with animated sections, skills, projects and an interactive full-stack showcase.",
+    "repo": "https://github.com/mahnoorimranawan22/portfolio",
+    "demo": "https://mahnoorimranawan22.github.io/portfolio/",
+    "coverImage": null,
+    "tech": [
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
+    "features": [
+      "Responsive hero with a typewriter headline",
+      "Animated skills bars and project cards",
+      "Interactive full-stack showcase section",
+      "Contact form and social links"
+    ],
+    "id": "portfolio-website"
+  },
+  {
+    "id": "test-project-pro",
+    "title": "Test Project Pro",
+    "icon": "🚀",
+    "category": "frontend",
+    "featured": false,
+    "description": "A robust automated test project with full capabilities.",
+    "repo": "https://github.com/mahnoorimranawan22/test-project-pro",
+    "demo": null,
+    "coverImage": null,
+    "tech": [
+      "React"
+    ],
+    "features": []
+  }
+]
