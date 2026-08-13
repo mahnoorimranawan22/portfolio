@@ -6,7 +6,7 @@ const CONTACT_ITEMS = [
     { icon: 'fas fa-phone', label: 'Phone', value: '0346-2936378', href: 'tel:+923462936378' },
     { icon: 'fas fa-map-marker-alt', label: 'Location', value: 'Pakistan' },
     { icon: 'fab fa-github', label: 'GitHub', value: 'github.com/mahnoorimranawan22', href: 'https://github.com/mahnoorimranawan22' },
-    { icon: 'fab fa-linkedin', label: 'LinkedIn', value: 'linkedin.com/in/mahnoor-imran', href: 'https://www.linkedin.com/in/mahnoor-imran-8612b5375' },
+    { icon: 'fab fa-linkedin', label: 'LinkedIn', value: 'linkedin.com/in/mahnoor-imran-8612b5375', href: 'https://www.linkedin.com/in/mahnoor-imran-8612b5375' },
 ];
 
 export default function Contact({ onShowToast }) {

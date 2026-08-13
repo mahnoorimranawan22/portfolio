@@ -292,20 +292,5 @@
       "Contact form and social links"
     ],
     "id": "portfolio-website"
-  },
-  {
-    "id": "test-project-pro",
-    "title": "Test Project Pro",
-    "icon": "🚀",
-    "category": "frontend",
-    "featured": false,
-    "description": "A robust automated test project with full capabilities.",
-    "repo": "https://github.com/mahnoorimranawan22/test-project-pro",
-    "demo": null,
-    "coverImage": null,
-    "tech": [
-      "React"
-    ],
-    "features": []
   }
 ]
