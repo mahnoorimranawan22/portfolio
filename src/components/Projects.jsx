@@ -18,34 +18,6 @@ const CATEGORIES = [
     { id: 'frontend', label: 'Frontend' },
 ];
 
-function ProjectCover({ project }) {
-    const [imgFailed, setImgFailed] = useState(false);
-
-    // Relative cover paths resolve correctly both in dev (localhost/) and
-    // when served under a sub-path like GitHub Pages (/portfolio/). Root-
-    // absolute paths (/projects/...) would 404 on the sub-path deployment.
-    const coverSrc = project.coverImage || null;
-
-    if (!coverSrc || imgFailed) {
-        return (
-            <div className="project-cover project-cover-fallback" aria-hidden="true">
-                <span className="banner-icon">{project.icon}</span>
-            </div>
-        );
-    }
-
-    return (
-        <div className="project-cover">
-            <img
-                src={coverSrc}
-                alt={`${project.title} interface preview`}
-                loading="lazy"
-                onError={() => setImgFailed(true)}
-            />
-        </div>
-    );
-}
-
 export default function Projects() {
     const [filter, setFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
@@ -199,8 +171,6 @@ export default function Projects() {
                                 key={project.title}
                                 style={{ '--reveal-delay': `${(index % 3) * 0.08}s` }}
                             >
-                                <ProjectCover project={project} />
-
                                 <div className="project-body">
                                     {project.featured && (
                                         <span className="featured-badge-tag">

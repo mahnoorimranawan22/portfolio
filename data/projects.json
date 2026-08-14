@@ -7,7 +7,7 @@
     "description": "Practice technical interviews with an AI interviewer powered by Groq’s LLM — answer real questions and get instant, adaptive feedback.",
     "repo": "https://github.com/mahnoorimranawan22/ai-interview-coach",
     "demo": null,
-    "coverImage": "projects/ai-interview-coach.png",
+    "coverImage": null,
     "tech": [
       "React 19",
       "Vite",
@@ -45,7 +45,7 @@
     "description": "AI-powered study assistant combining a learning dashboard, interactive AI chat and built-in interview practice in one installable app.",
     "repo": "https://github.com/mahnoorimranawan22/AI-StudyMate",
     "demo": null,
-    "coverImage": "projects/ai-studymate.png",
+    "coverImage": null,
     "tech": [
       "JavaScript",
       "Node.js",
@@ -83,7 +83,7 @@
     "description": "Full-stack task management platform with secure JWT authentication, a Node/Express REST API, MongoDB persistence and a responsive glassmorphism dashboard.",
     "repo": "https://github.com/mahnoorimranawan22/task-management-system",
     "demo": null,
-    "coverImage": "projects/task-management-system.png",
+    "coverImage": null,
     "tech": [
       "Node.js",
       "Express.js",
@@ -121,7 +121,7 @@
     "description": "Weather dashboard streaming live Open-Meteo data — city search, geolocation and a 5-day forecast wrapped in a glassmorphism UI.",
     "repo": "https://github.com/mahnoorimranawan22/weather-app-pro",
     "demo": null,
-    "coverImage": "projects/weather-app-pro.png",
+    "coverImage": null,
     "tech": [
       "HTML5",
       "CSS3",
@@ -144,7 +144,7 @@
     "description": "Production-ready task dashboard built with modern ES6+ JavaScript — local persistence, live statistics and real-time search.",
     "repo": "https://github.com/mahnoorimranawan22/todo-app-pro",
     "demo": null,
-    "coverImage": "projects/todo-app-pro.png",
+    "coverImage": null,
     "tech": [
       "HTML5",
       "CSS3",
@@ -166,7 +166,7 @@
     "description": "Beginner-friendly full-stack counter with a Node/Express REST API, custom step sizes, counter history and keyboard shortcuts.",
     "repo": "https://github.com/mahnoorimranawan22/smart-counter-fullstack",
     "demo": null,
-    "coverImage": "projects/smart-counter.png",
+    "coverImage": null,
     "tech": [
       "HTML5",
       "CSS3",
@@ -191,7 +191,7 @@
     "description": "A modern, responsive fashion store website with a clean and elegant UI for an online clothing store, built with HTML5 and CSS3.",
     "repo": "https://github.com/mahnoorimranawan22/aurelia-fashion-store",
     "demo": null,
-    "coverImage": "projects/aurelia-fashion-store.png",
+    "coverImage": null,
     "tech": [
       "HTML5",
       "CSS3",
@@ -214,7 +214,7 @@
     "description": "A premium, responsive eye care clinic website with appointment booking, dark mode, FAQ, gallery and testimonials.",
     "repo": "https://github.com/mahnoorimranawan22/clearvision-eye-care",
     "demo": null,
-    "coverImage": "projects/clearvision-eye-care.png",
+    "coverImage": null,
     "tech": [
       "HTML5",
       "CSS3",
@@ -236,7 +236,7 @@
     "description": "A responsive restaurant website featuring the Foodix burger section — product cards, a shopping cart and a modern food-restaurant layout.",
     "repo": "https://github.com/mahnoorimranawan22/foodix-burger-website",
     "demo": null,
-    "coverImage": "projects/foodix-burger-website.png",
+    "coverImage": null,
     "tech": [
       "HTML",
       "CSS",
@@ -258,7 +258,7 @@
     "description": "A professional calculator with a polished, responsive interface, built with HTML, CSS, JavaScript and Bootstrap.",
     "repo": "https://github.com/mahnoorimranawan22/smartcalc-pro",
     "demo": null,
-    "coverImage": "projects/smartcalc-pro.png",
+    "coverImage": null,
     "tech": [
       "HTML5",
       "CSS3",
@@ -279,7 +279,7 @@
     "description": "My personal portfolio website — a responsive site with animated sections, skills, projects and an interactive full-stack showcase.",
     "repo": "https://github.com/mahnoorimranawan22/portfolio",
     "demo": null,
-    "coverImage": "projects/portfolio-website.png",
+    "coverImage": null,
     "tech": [
       "HTML5",
       "CSS3",

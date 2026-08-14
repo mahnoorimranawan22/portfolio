@@ -7,7 +7,7 @@ import {
 
 const EMPTY_PROJECT = {
     title: '', icon: '🚀', category: 'frontend', featured: false,
-    description: '', repo: '', coverImage: '',
+    description: '', repo: '',
     tech: [], features: [],
 };
 
@@ -238,15 +238,6 @@ export default function ProjectsAdmin() {
                                     placeholder="https://github.com/…"
                                 />
                             </label>
-                            <label className="admin-field admin-field-span2">
-                                <span>Cover image path</span>
-                                <input
-                                    value={editing.coverImage}
-                                    onChange={(e) => setEditing({ ...editing, coverImage: e.target.value })}
-                                    placeholder="/projects/…png (optional)"
-                                />
-                            </label>
-
                             {/* Tech chips */}
                             <div className="admin-field admin-field-span2">
                                 <span>Technologies</span>
