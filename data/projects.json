@@ -257,7 +257,7 @@
     "featured": false,
     "description": "A professional calculator with a polished, responsive interface, built with HTML, CSS, JavaScript and Bootstrap.",
     "repo": "https://github.com/mahnoorimranawan22/smartcalc-pro",
-    "demo": "https://mahnoorimranawan22.github.io/smartcalc-pro/",
+    "demo": "https://mahnoorimranawan22.github.io/smartcalc-pro/smartcalc.html",
     "coverImage": "projects/smartcalc-pro.png",
     "tech": [
       "HTML5",
