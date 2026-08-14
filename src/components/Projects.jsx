@@ -74,6 +74,36 @@ export default function Projects() {
         return () => clearTimeout(timer);
     }, [filter, searchTerm]);
 
+    // Subtle 3D tilt on project cards (desktop mouse only).
+    useEffect(() => {
+        const grid = document.querySelector('.projects-grid');
+        if (!grid) return;
+
+        const onMove = (e) => {
+            const card = e.target.closest('.project-card');
+            if (!card) return;
+            const rect = card.getBoundingClientRect();
+            const px = (e.clientX - rect.left) / rect.width - 0.5;
+            const py = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transition = 'transform 0.12s ease-out';
+            card.style.transform = `perspective(900px) rotateY(${px * 5}deg) rotateX(${-py * 5}deg) translateY(-4px)`;
+        };
+
+        const onLeave = () => {
+            grid.querySelectorAll('.project-card').forEach((c) => {
+                c.style.transform = '';
+                c.style.transition = '';
+            });
+        };
+
+        grid.addEventListener('mousemove', onMove);
+        grid.addEventListener('mouseleave', onLeave);
+        return () => {
+            grid.removeEventListener('mousemove', onMove);
+            grid.removeEventListener('mouseleave', onLeave);
+        };
+    }, []);
+
     // Count projects per category
     const categoryCounts = {
         all: projects.length,

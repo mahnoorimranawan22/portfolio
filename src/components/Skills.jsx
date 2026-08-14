@@ -5,6 +5,13 @@ import { api } from '../lib/api';
    serves. Rendered instantly, upgraded from the API when reachable. */
 import SKILLS_DATA from '../../data/skills.json';
 
+/* Decorative marquee strip (duplicated for a seamless loop) */
+const TECH_MARQUEE = [
+    'React', 'Node.js', 'Express', 'MongoDB', 'SQLite', 'Vite',
+    'JavaScript (ES6+)', 'Tailwind CSS', 'Bootstrap', 'REST APIs',
+    'JWT Auth', 'PWA', 'Git & GitHub', 'Groq / OpenAI APIs',
+];
+
 export default function Skills() {
     const sectionRef = useRef(null);
     const [animate, setAnimate] = useState(false);
@@ -78,6 +85,25 @@ export default function Skills() {
                                 <i className="fas fa-times" aria-hidden="true"></i>
                             </button>
                         )}
+                    </div>
+                </div>
+
+                <div className="tech-marquee reveal" aria-hidden="true">
+                    <div className="tech-marquee-track">
+                        <div className="tech-marquee-group">
+                            {TECH_MARQUEE.map((t) => (
+                                <span className="tech-marquee-chip" key={t}>
+                                    <i className="fas fa-code" aria-hidden="true"></i> {t}
+                                </span>
+                            ))}
+                        </div>
+                        <div className="tech-marquee-group">
+                            {TECH_MARQUEE.map((t) => (
+                                <span className="tech-marquee-chip" key={`${t}-dup`}>
+                                    <i className="fas fa-code" aria-hidden="true"></i> {t}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
 

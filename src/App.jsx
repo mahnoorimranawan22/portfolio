@@ -100,8 +100,8 @@ export default function App() {
     return (
         <>
             <CanvasPlexus theme={theme} />
-            <div className="orb orb-emerald" aria-hidden="true"></div>
-            <div className="orb orb-lime" aria-hidden="true"></div>
+            <div className="orb orb-crimson" aria-hidden="true"></div>
+            <div className="orb orb-rose" aria-hidden="true"></div>
             <div className="progress-bar" id="progressBar" aria-hidden="true"></div>
 
             <Navbar theme={theme} setTheme={setTheme} />
@@ -143,7 +143,7 @@ export default function App() {
             {toast && (
                 <div className="toast-container" role="status" aria-live="polite">
                     <div className={`toast${toast.leaving ? ' toast-leaving' : ''}`}>
-                        <i className="fas fa-check-circle" style={{ color: '#10b981' }} aria-hidden="true"></i>
+                        <i className="fas fa-check-circle" style={{ color: '#ef4444' }} aria-hidden="true"></i>
                         <span>{toast.message}</span>
                     </div>
                 </div>

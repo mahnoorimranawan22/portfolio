@@ -32,24 +32,29 @@
    01. DESIGN TOKENS
    ========================================================================== */
 :root {
-  /* ── Brand palette (professional emerald green → lime → coral accents on charcoal) ── */
-  --brand-300: #34d399;
-  --brand-400: #10b981;
-  --brand-500: #059669;
-  /* primary emerald */
-  --brand-600: #047857;
-  --brand-700: #065f46;
+  /* ── Brand palette (vibrant crimson red → rose on charcoal) ── */
+  --brand-300: #fca5a5;
+  --brand-400: #f87171;
+  --brand-500: #ef4444;
+  /* primary crimson */
+  --brand-600: #dc2626;
+  --brand-700: #b91c1c;
 
-  --lime-300: #bef264;
-  --lime-400: #a3e635;
-  /* secondary soft lime */
-  --lime-500: #84cc16;
-  --lime-600: #65a30d;
+  --lime-300: #fecaca;
+  --lime-400: #fda4af;
+  /* secondary soft rose */
+  --lime-500: #e11d48;
+  --lime-600: #be123c;
 
-  --coral-400: #fb923c;
-  --coral-500: #f97316;
-  /* coral/orange for CTA highlights */
-  --coral-600: #ea580c;
+  --coral-400: #dc2626;
+  --coral-500: #b91c1c;
+  /* deep crimson for CTA highlights */
+  --coral-600: #991b1b;
+
+  /* Rose-red aliases (chips, terminal status, status dots) */
+  --emerald-300: #fecaca;
+  --emerald-400: #f87171;
+  --emerald-500: #ef4444;
 
   --danger-400: #f87171;
   --danger-500: #ef4444;
@@ -58,11 +63,11 @@
 
   /* ── Semantic aliases ── */
   --primary: var(--brand-500);
-  --primary-rgb: 5, 150, 105;
+  --primary-rgb: 239, 68, 68;
   --secondary: var(--lime-500);
-  --secondary-rgb: 132, 204, 22;
+  --secondary-rgb: 225, 29, 72;
   --accent: var(--coral-500);
-  --accent-rgb: 249, 115, 22;
+  --accent-rgb: 185, 28, 28;
 
   /* ── Surface scale (dark charcoal) ── */
   --surface-0: #0a0b0d;
@@ -199,18 +204,18 @@
   --border-soft: rgba(26, 28, 30, 0.12);
   --border-strong: rgba(26, 28, 30, 0.24);
 
-  --primary-rgb: 4, 120, 87;
-  /* Emerald 700 */
-  --secondary-rgb: 101, 163, 13;
-  /* Lime 600 */
+  --primary-rgb: 220, 38, 38;
+  /* Red 600 */
+  --secondary-rgb: 190, 18, 60;
+  /* Rose 700 */
 
-  --brand-300: #059669;
-  --brand-400: #047857;
-  --brand-500: #065f46;
+  --brand-300: #f87171;
+  --brand-400: #dc2626;
+  --brand-500: #b91c1c;
 
-  --secondary: #65a30d;
-  --accent: #d97706;
-  /* Warm Coral/Bronze */
+  --secondary: #be123c;
+  --accent: #991b1b;
+  /* Deep crimson */
 }
 
 :root[data-theme="light"] .navbar-shell {
@@ -342,10 +347,31 @@ p {
 
 .gradient-text {
   background: var(--gradient-text);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  animation: gradient-shimmer 6s ease-in-out infinite;
+}
+
+/* Shimmering underline under section titles */
+.section-title {
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--brand-400), var(--secondary), var(--brand-500));
+  background-size: 200% auto;
+  animation: gradient-shimmer 4.5s ease-in-out infinite;
 }
 
 /* ==========================================================================
@@ -985,22 +1011,97 @@ section {
   z-index: 0;
 }
 
-.orb-emerald {
+.orb-crimson {
   width: 420px;
   height: 420px;
-  background: rgba(var(--primary-rgb), 0.12);
+  background: rgba(var(--primary-rgb), 0.14);
   top: -8%;
   left: -12%;
   animation: orb-drift 14s ease-in-out infinite alternate;
 }
 
-.orb-lime {
+.orb-rose {
   width: 380px;
   height: 380px;
-  background: rgba(var(--secondary-rgb), 0.11);
+  background: rgba(var(--secondary-rgb), 0.12);
   bottom: -10%;
   right: -8%;
   animation: orb-drift 18s ease-in-out infinite alternate-reverse;
+}
+
+/* ── Lively theme motion ── */
+@keyframes gradient-shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Tech marquee strip */
+.tech-marquee {
+  overflow: hidden;
+  margin-bottom: var(--space-10);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.tech-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-right: var(--space-3);
+}
+
+.tech-marquee-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--brand-300);
+  background: rgba(var(--primary-rgb), 0.07);
+  border: 1px solid rgba(var(--primary-rgb), 0.22);
+}
+
+.tech-marquee-chip i {
+  color: var(--brand-400);
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text,
+  .section-title::after,
+  .orb,
+  .tech-marquee-track {
+    animation: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -1365,6 +1466,17 @@ section {
   flex-direction: column;
   overflow: hidden;
   height: 100%;
+  transform-style: preserve-3d;
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out),
+    background-color var(--dur-med) ease;
+}
+
+.project-card:hover {
+  border-color: rgba(var(--primary-rgb), 0.45);
+  box-shadow: var(--shadow-lg), 0 0 42px rgba(var(--primary-rgb), 0.16);
 }
 
 .project-card.featured {

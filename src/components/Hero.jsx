@@ -60,6 +60,8 @@ export default function Hero() {
 
     return (
         <section className="hero" id="home">
+            <div className="orb orb-crimson" aria-hidden="true"></div>
+            <div className="orb orb-rose" aria-hidden="true"></div>
             <div className="hero-content reveal">
                 <p className="hero-greeting">
                     <i className="fas fa-hand-sparkles" aria-hidden="true"></i> Hello, I'm
