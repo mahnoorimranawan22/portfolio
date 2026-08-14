@@ -2,11 +2,29 @@ import { useState } from 'react';
 import { api } from '../lib/api';
 
 const CONTACT_ITEMS = [
-    { icon: 'fas fa-envelope', label: 'Email', value: 'mahnoorimranawan22@gmail.com', href: 'mailto:mahnoorimranawan22@gmail.com' },
-    { icon: 'fas fa-phone', label: 'Phone', value: '0346-2936378', href: 'tel:+923462936378' },
+    { icon: 'fas fa-envelope', label: 'Email', value: 'mahnoorimranawan22@gmail.com', href: 'mailto:mahnoorimranawan22@gmail.com', copyable: true },
+    { icon: 'fas fa-phone', label: 'Phone', value: '+92 346 2936378', href: 'tel:+923462936378', copyable: true },
     { icon: 'fas fa-map-marker-alt', label: 'Location', value: 'Pakistan' },
     { icon: 'fab fa-github', label: 'GitHub', value: 'github.com/mahnoorimranawan22', href: 'https://github.com/mahnoorimranawan22' },
     { icon: 'fab fa-linkedin', label: 'LinkedIn', value: 'linkedin.com/in/mahnoor-imran-8612b5375', href: 'https://www.linkedin.com/in/mahnoor-imran-8612b5375' },
+];
+
+const MESSAGE_PRESETS = [
+    {
+        label: '💼 Project / Freelance',
+        subject: 'Inquiry regarding Full-Stack / Web Development Project',
+        message: 'Hi Mahnoor, I saw your portfolio and would like to discuss a web application project opportunity with you.'
+    },
+    {
+        label: '👋 Say Hello',
+        subject: 'Networking & Connection',
+        message: 'Hi Mahnoor! I enjoyed exploring your AI Interview Coach & portfolio projects. Would love to connect!'
+    },
+    {
+        label: '🚀 Career Opportunity',
+        subject: 'Software Engineer Role Opportunity',
+        message: 'Hi Mahnoor, we have an exciting engineering role that aligns with your React and Express skill set. Let us know if you are open to chat!'
+    }
 ];
 
 export default function Contact({ onShowToast }) {
@@ -29,11 +47,22 @@ export default function Contact({ onShowToast }) {
                 setMessage('');
             })
             .catch(() => {
-                // Backend offline — keep the draft so the visitor can retry or
-                // copy it into an email instead of silently losing their message.
-                onShowToast('⚠️ API offline — message not sent. Your draft is saved; email me directly.');
+                // Backend offline — keep draft so visitor can retry or copy directly
+                onShowToast('⚠️ API offline — draft saved! You can copy & email me directly.');
             })
             .finally(() => setSubmitting(false));
+    };
+
+    const handleApplyPreset = (preset) => {
+        setSubject(preset.subject);
+        setMessage(preset.message);
+        onShowToast(`✨ Filled template: "${preset.label}"`);
+    };
+
+    const handleCopy = (text, label) => {
+        navigator.clipboard.writeText(text).then(() => {
+            onShowToast(`📋 Copied ${label} to clipboard!`);
+        });
     };
 
     return (
@@ -52,19 +81,22 @@ export default function Contact({ onShowToast }) {
                         <h3>Let's Connect</h3>
                         <p>
                             I'm always open to new opportunities, collaborations, or just a friendly chat. Feel free
-                            to reach out!
+                            to reach out directly or use the quick contact form!
                         </p>
 
                         <div className="contact-list">
                             {CONTACT_ITEMS.map((item) => (
                                 <div className="contact-item" key={item.label}>
                                     <i className={item.icon} aria-hidden="true"></i>
-                                    <div>
+                                    <div className="contact-item-content">
                                         <h4>{item.label}</h4>
                                         <p>
                                             {item.href ? (
-                                                <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined}
-                                                    rel="noopener noreferrer">
+                                                <a
+                                                    href={item.href}
+                                                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                                                    rel="noopener noreferrer"
+                                                >
                                                     {item.value}
                                                 </a>
                                             ) : (
@@ -72,12 +104,39 @@ export default function Contact({ onShowToast }) {
                                             )}
                                         </p>
                                     </div>
+                                    {item.copyable && (
+                                        <button
+                                            type="button"
+                                            className="copy-item-btn"
+                                            onClick={() => handleCopy(item.value, item.label)}
+                                            title={`Copy ${item.label}`}
+                                            aria-label={`Copy ${item.label}`}
+                                        >
+                                            <i className="fas fa-copy" aria-hidden="true"></i>
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     <form className="contact-form glass-panel reveal" style={{ '--reveal-delay': '0.1s' }} onSubmit={handleSubmit}>
+                        <div className="preset-chips-container">
+                            <span className="preset-chips-label"><i className="fas fa-magic" aria-hidden="true"></i> Quick Presets:</span>
+                            <div className="preset-chips">
+                                {MESSAGE_PRESETS.map((preset) => (
+                                    <button
+                                        key={preset.label}
+                                        type="button"
+                                        className="preset-chip"
+                                        onClick={() => handleApplyPreset(preset)}
+                                    >
+                                        {preset.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
                         <input
                             className="field"
                             type="text"
@@ -112,6 +171,7 @@ export default function Contact({ onShowToast }) {
                             name="message"
                             placeholder="Your Message"
                             required
+                            rows={4}
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                         ></textarea>
@@ -132,3 +192,4 @@ export default function Contact({ onShowToast }) {
         </section>
     );
 }
+

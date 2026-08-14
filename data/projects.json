@@ -7,7 +7,7 @@
     "description": "Practice technical interviews with an AI interviewer powered by Groq’s LLM — answer real questions and get instant, adaptive feedback.",
     "repo": "https://github.com/mahnoorimranawan22/ai-interview-coach",
     "demo": null,
-    "coverImage": "/projects/ai-interview-coach.png",
+    "coverImage": "projects/ai-interview-coach.png",
     "tech": [
       "React 19",
       "Vite",
@@ -45,7 +45,7 @@
     "description": "AI-powered study assistant combining a learning dashboard, interactive AI chat and built-in interview practice in one installable app.",
     "repo": "https://github.com/mahnoorimranawan22/AI-StudyMate",
     "demo": null,
-    "coverImage": "/projects/ai-studymate.png",
+    "coverImage": "projects/ai-studymate.png",
     "tech": [
       "JavaScript",
       "Node.js",
@@ -258,7 +258,7 @@
     "description": "A professional calculator with a polished, responsive interface, built with HTML, CSS, JavaScript and Bootstrap.",
     "repo": "https://github.com/mahnoorimranawan22/smartcalc-pro",
     "demo": "https://mahnoorimranawan22.github.io/smartcalc-pro/",
-    "coverImage": null,
+    "coverImage": "projects/smartcalc-pro.png",
     "tech": [
       "HTML5",
       "CSS3",
@@ -279,7 +279,7 @@
     "description": "My personal portfolio website — a responsive site with animated sections, skills, projects and an interactive full-stack showcase.",
     "repo": "https://github.com/mahnoorimranawan22/portfolio",
     "demo": "https://mahnoorimranawan22.github.io/portfolio/",
-    "coverImage": null,
+    "coverImage": "projects/portfolio-website.png",
     "tech": [
       "HTML5",
       "CSS3",

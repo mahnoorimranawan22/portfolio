@@ -51,6 +51,7 @@ function ProjectCover({ project }) {
 
 export default function Projects() {
     const [filter, setFilter] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('');
     const [activeStudy, setActiveStudy] = useState(null);
     const [projects, setProjects] = useState(PROJECTS_DATA);
 
@@ -72,15 +73,24 @@ export default function Projects() {
         };
     }, []);
 
-    // Lock body-scroll while modal is open
+    // Lock body-scroll while modal is open & handle ESC key
     useEffect(() => {
         if (activeStudy) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
         }
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && activeStudy) {
+                setActiveStudy(null);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
         return () => {
             document.body.style.overflow = '';
+            window.removeEventListener('keydown', handleKeyDown);
         };
     }, [activeStudy]);
 
@@ -93,10 +103,29 @@ export default function Projects() {
                 .forEach((el) => el.classList.add('is-visible'));
         }, 60);
         return () => clearTimeout(timer);
-    }, [filter]);
+    }, [filter, searchTerm]);
 
-    const visibleProjects =
-        filter === 'all' ? projects : projects.filter((p) => p.category === filter);
+    // Count projects per category
+    const categoryCounts = {
+        all: projects.length,
+        ai: projects.filter((p) => p.category === 'ai').length,
+        fullstack: projects.filter((p) => p.category === 'fullstack').length,
+        frontend: projects.filter((p) => p.category === 'frontend').length,
+    };
+
+    const visibleProjects = projects.filter((p) => {
+        const matchesCategory = filter === 'all' || p.category === filter;
+        const searchLower = searchTerm.toLowerCase().trim();
+        if (!searchLower) return matchesCategory;
+
+        const matchesSearch =
+            p.title.toLowerCase().includes(searchLower) ||
+            p.description.toLowerCase().includes(searchLower) ||
+            p.tech.some((t) => t.toLowerCase().includes(searchLower)) ||
+            p.features.some((f) => f.toLowerCase().includes(searchLower));
+
+        return matchesCategory && matchesSearch;
+    });
 
     return (
         <section className="projects" id="projects">
@@ -112,89 +141,131 @@ export default function Projects() {
                     </p>
                 </div>
 
-                <div className="project-filters reveal" role="group" aria-label="Filter projects by category">
-                    {CATEGORIES.map((cat) => (
-                        <button
-                            key={cat.id}
-                            className={`filter-btn${filter === cat.id ? ' active' : ''}`}
-                            onClick={() => setFilter(cat.id)}
-                            aria-pressed={filter === cat.id}
-                        >
-                            {cat.label}
-                        </button>
-                    ))}
+                <div className="projects-toolbar reveal">
+                    <div className="project-filters" role="group" aria-label="Filter projects by category">
+                        {CATEGORIES.map((cat) => (
+                            <button
+                                key={cat.id}
+                                className={`filter-btn${filter === cat.id ? ' active' : ''}`}
+                                onClick={() => setFilter(cat.id)}
+                                aria-pressed={filter === cat.id}
+                            >
+                                {cat.label} <span className="cat-badge">{categoryCounts[cat.id] || 0}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="project-search-box">
+                        <i className="fas fa-search search-icon" aria-hidden="true"></i>
+                        <input
+                            type="text"
+                            className="field search-field"
+                            placeholder="Filter by keyword or tech (e.g. React, Express, PWA)..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            aria-label="Filter projects"
+                        />
+                        {searchTerm && (
+                            <button
+                                type="button"
+                                className="clear-search-btn"
+                                onClick={() => setSearchTerm('')}
+                                aria-label="Clear search"
+                            >
+                                <i className="fas fa-times" aria-hidden="true"></i>
+                            </button>
+                        )}
+                    </div>
                 </div>
 
-                <div className="projects-grid">
-                    {visibleProjects.map((project, index) => (
-                        <article
-                            className={`project-card glass-panel reveal${project.featured ? ' featured' : ''}`}
-                            key={project.title}
-                            style={{ '--reveal-delay': `${(index % 3) * 0.08}s` }}
+                {visibleProjects.length === 0 ? (
+                    <div className="no-projects-found glass-panel reveal">
+                        <i className="fas fa-folder-open empty-icon" aria-hidden="true"></i>
+                        <h3>No projects match your filter</h3>
+                        <p>Try searching for a different framework, keyword, or select another category above.</p>
+                        <button
+                            type="button"
+                            className="btn btn-secondary btn-sm"
+                            onClick={() => {
+                                setFilter('all');
+                                setSearchTerm('');
+                            }}
                         >
-                            <ProjectCover project={project} />
+                            Reset Filters
+                        </button>
+                    </div>
+                ) : (
+                    <div className="projects-grid">
+                        {visibleProjects.map((project, index) => (
+                            <article
+                                className={`project-card glass-panel reveal${project.featured ? ' featured' : ''}`}
+                                key={project.title}
+                                style={{ '--reveal-delay': `${(index % 3) * 0.08}s` }}
+                            >
+                                <ProjectCover project={project} />
 
-                            <div className="project-body">
-                                {project.featured && (
-                                    <span className="featured-badge-tag">
-                                        <i className="fas fa-star" aria-hidden="true"></i> Featured Project
-                                    </span>
-                                )}
-                                <div className="project-heading">
-                                    <h3>{project.title}</h3>
-                                    <span className="project-icon" aria-hidden="true">{project.icon}</span>
-                                </div>
+                                <div className="project-body">
+                                    {project.featured && (
+                                        <span className="featured-badge-tag">
+                                            <i className="fas fa-star" aria-hidden="true"></i> Featured Project
+                                        </span>
+                                    )}
+                                    <div className="project-heading">
+                                        <h3>{project.title}</h3>
+                                        <span className="project-icon" aria-hidden="true">{project.icon}</span>
+                                    </div>
 
-                                <p>{project.description}</p>
+                                    <p>{project.description}</p>
 
-                                <ul className="project-features">
-                                    {project.features.map((feature) => (
-                                        <li className="project-feature" key={feature}>
-                                            <i className="fas fa-circle-check" aria-hidden="true"></i>
-                                            <span>{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                    <ul className="project-features">
+                                        {project.features.map((feature) => (
+                                            <li className="project-feature" key={feature}>
+                                                <i className="fas fa-circle-check" aria-hidden="true"></i>
+                                                <span>{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
 
-                                <div className="project-tags">
-                                    {project.tech.map((tag) => (
-                                        <span className="chip" key={tag}>{tag}</span>
-                                    ))}
-                                </div>
+                                    <div className="project-tags">
+                                        {project.tech.map((tag) => (
+                                            <span className="chip" key={tag}>{tag}</span>
+                                        ))}
+                                    </div>
 
-                                <div className="project-links">
-                                    <a
-                                        href={project.repo}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="btn btn-secondary btn-sm"
-                                    >
-                                        <i className="fab fa-github" aria-hidden="true"></i> View Code
-                                    </a>
-                                    {project.demo && (
+                                    <div className="project-links">
                                         <a
-                                            href={project.demo}
+                                            href={project.repo}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="btn btn-primary btn-sm"
+                                            className="btn btn-secondary btn-sm"
                                         >
-                                            <i className="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+                                            <i className="fab fa-github" aria-hidden="true"></i> View Code
                                         </a>
-                                    )}
-                                    {project.caseStudy && (
-                                        <button
-                                            type="button"
-                                            onClick={() => setActiveStudy(project)}
-                                            className="btn btn-accent btn-sm"
-                                        >
-                                            <i className="fas fa-book-open" aria-hidden="true"></i> Case Study
-                                        </button>
-                                    )}
+                                        {project.demo && (
+                                            <a
+                                                href={project.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-primary btn-sm"
+                                            >
+                                                <i className="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+                                            </a>
+                                        )}
+                                        {project.caseStudy && (
+                                            <button
+                                                type="button"
+                                                onClick={() => setActiveStudy(project)}
+                                                className="btn btn-accent btn-sm"
+                                            >
+                                                <i className="fas fa-book-open" aria-hidden="true"></i> Case Study
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    ))}
-                </div>
+                            </article>
+                        ))}
+                    </div>
+                )}
 
                 <div className="projects-cta reveal">
                     <a

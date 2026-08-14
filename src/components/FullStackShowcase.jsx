@@ -5,9 +5,13 @@ const ENDPOINTS_DATA = {
         status: 200,
         statusText: 'OK',
         latency: '34ms',
+        payload: {
+            email: 'mahnoorimranawan22@gmail.com',
+            password: '••••••••••••'
+        },
         data: {
             success: true,
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoibWFobm9vcmltcmFuYXdhbjIyQGdtYWlsLmNvbSJ9...',
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoibWFobn9vcmltcmFuYXdhbjIyQGdtYWlsLmNvbSJ9...',
             user: {
                 id: 1,
                 name: 'Mahnoor Imran',
@@ -19,6 +23,10 @@ const ENDPOINTS_DATA = {
         status: 201,
         statusText: 'Created',
         latency: '115ms',
+        payload: {
+            topic: 'React 19 & State Management',
+            level: 'Advanced Technical'
+        },
         data: {
             sessionId: 42,
             topic: 'React 19 & State Management',
@@ -32,6 +40,10 @@ const ENDPOINTS_DATA = {
         status: 200,
         statusText: 'OK',
         latency: '1420ms',
+        payload: {
+            sessionId: 42,
+            answer: 'Server Actions optimize mutations by streaming form state transitions directly without boilerplate useEffect listeners.'
+        },
         data: {
             evaluation: {
                 score: '8.5/10',
@@ -121,22 +133,40 @@ export default function FullStackShowcase() {
         '> Select an endpoint below and click Execute Query to test the Express + Groq API integration...'
     );
     const [loading, setLoading] = useState(false);
+    const [copiedDiagram, setCopiedDiagram] = useState(false);
+    const [copiedResponse, setCopiedResponse] = useState(false);
 
     const handleExecute = () => {
         setLoading(true);
-        setLog(`> Sending request: ${endpoint.replace('/', ' ')}...`);
+        const selected = ENDPOINTS_DATA[endpoint];
+        const payloadStr = selected?.payload ? `\n> Request Payload: ${JSON.stringify(selected.payload)}` : '';
+        setLog(`> Sending request: ${endpoint.replace('/', ' ')}...${payloadStr}`);
         setStatus('');
 
         setTimeout(() => {
-            const res = ENDPOINTS_DATA[endpoint];
-            if (res) {
-                setStatus(`${res.status} ${res.statusText}  (${res.latency})`);
-                setBody(JSON.stringify(res.data, null, 2));
+            if (selected) {
+                setStatus(`${selected.status} ${selected.statusText} (${selected.latency})`);
+                setBody(JSON.stringify(selected.data, null, 2));
             } else {
                 setBody('> Error: Endpoint not configured.');
             }
             setLoading(false);
-        }, 800);
+        }, 600);
+    };
+
+    const handleCopyDiagram = () => {
+        const diagramText = TAB_PANELS[activeTab].diagram;
+        navigator.clipboard.writeText(diagramText).then(() => {
+            setCopiedDiagram(true);
+            setTimeout(() => setCopiedDiagram(false), 2000);
+        });
+    };
+
+    const handleCopyResponse = () => {
+        navigator.clipboard.writeText(body).then(() => {
+            setCopiedResponse(true);
+            setTimeout(() => setCopiedResponse(false), 2000);
+        });
     };
 
     return (
@@ -212,8 +242,21 @@ export default function FullStackShowcase() {
 
                         {/* Diagram panel */}
                         <div className="featured-stage">
-                            <h4>{TAB_PANELS[activeTab].title}</h4>
-                            <p>{TAB_PANELS[activeTab].desc}</p>
+                            <div className="stage-head-row">
+                                <div>
+                                    <h4>{TAB_PANELS[activeTab].title}</h4>
+                                    <p>{TAB_PANELS[activeTab].desc}</p>
+                                </div>
+                                <button
+                                    type="button"
+                                    className="btn btn-secondary btn-sm copy-btn"
+                                    onClick={handleCopyDiagram}
+                                    title="Copy ASCII diagram"
+                                >
+                                    <i className={`fas ${copiedDiagram ? 'fa-check' : 'fa-copy'}`} aria-hidden="true"></i>
+                                    <span>{copiedDiagram ? 'Copied' : 'Copy'}</span>
+                                </button>
+                            </div>
                             <pre className="featured-diagram-flow">{TAB_PANELS[activeTab].diagram}</pre>
                         </div>
                     </div>
@@ -228,6 +271,15 @@ export default function FullStackShowcase() {
                             <span className="dot-green"></span>
                         </div>
                         <div className="terminal-title">coach_sandbox_curl.sh</div>
+                        <button
+                            type="button"
+                            className="btn btn-ghost btn-sm copy-resp-btn"
+                            onClick={handleCopyResponse}
+                            title="Copy response body"
+                        >
+                            <i className={`fas ${copiedResponse ? 'fa-check text-brand' : 'fa-copy'}`} aria-hidden="true"></i>
+                            <span>{copiedResponse ? 'Copied' : 'Copy JSON'}</span>
+                        </button>
                     </div>
                     <div className="terminal-body">
                         <div className="terminal-row">
@@ -274,3 +326,4 @@ export default function FullStackShowcase() {
         </section>
     );
 }
+

@@ -44,7 +44,7 @@ export default function About() {
                                 width="400"
                                 height="400"
                                 loading="lazy"
-                                src="https://ui-avatars.com/api/?name=Mahnoor+Imran&size=400&background=059669&color=fff&bold=true"
+                                src="./mahnoor.png"
                                 alt="Portrait of Mahnoor Imran"
                             />
                         </div>
