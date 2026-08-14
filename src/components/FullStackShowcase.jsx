@@ -219,7 +219,7 @@ export default function FullStackShowcase() {
                                 href="#terminal"
                                 className="btn btn-secondary btn-md"
                             >
-                                <i className="fas fa-terminal" aria-hidden="true"></i> Live Demo (Sandbox)
+                                <i className="fas fa-terminal" aria-hidden="true"></i> Try the Terminal
                             </a>
                         </div>
                     </div>

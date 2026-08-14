@@ -82,7 +82,7 @@
     "featured": false,
     "description": "Full-stack task management platform with secure JWT authentication, a Node/Express REST API, MongoDB persistence and a responsive glassmorphism dashboard.",
     "repo": "https://github.com/mahnoorimranawan22/task-management-system",
-    "demo": "https://task-management-system-noors.netlify.app/",
+    "demo": null,
     "coverImage": "projects/task-management-system.png",
     "tech": [
       "Node.js",
@@ -120,7 +120,7 @@
     "featured": false,
     "description": "Weather dashboard streaming live Open-Meteo data — city search, geolocation and a 5-day forecast wrapped in a glassmorphism UI.",
     "repo": "https://github.com/mahnoorimranawan22/weather-app-pro",
-    "demo": "https://weather-app-pro-noors.netlify.app/",
+    "demo": null,
     "coverImage": "projects/weather-app-pro.png",
     "tech": [
       "HTML5",
@@ -143,7 +143,7 @@
     "featured": false,
     "description": "Production-ready task dashboard built with modern ES6+ JavaScript — local persistence, live statistics and real-time search.",
     "repo": "https://github.com/mahnoorimranawan22/todo-app-pro",
-    "demo": "https://todo-app-pro-noors.netlify.app/",
+    "demo": null,
     "coverImage": "projects/todo-app-pro.png",
     "tech": [
       "HTML5",
@@ -165,7 +165,7 @@
     "featured": false,
     "description": "Beginner-friendly full-stack counter with a Node/Express REST API, custom step sizes, counter history and keyboard shortcuts.",
     "repo": "https://github.com/mahnoorimranawan22/smart-counter-fullstack",
-    "demo": "https://smart-counter-lime.vercel.app/",
+    "demo": null,
     "coverImage": "projects/smart-counter.png",
     "tech": [
       "HTML5",
@@ -190,7 +190,7 @@
     "featured": false,
     "description": "A modern, responsive fashion store website with a clean and elegant UI for an online clothing store, built with HTML5 and CSS3.",
     "repo": "https://github.com/mahnoorimranawan22/aurelia-fashion-store",
-    "demo": "https://mahnoorimranawan22.github.io/aurelia-fashion-store/",
+    "demo": null,
     "coverImage": "projects/aurelia-fashion-store.png",
     "tech": [
       "HTML5",
@@ -213,7 +213,7 @@
     "featured": false,
     "description": "A premium, responsive eye care clinic website with appointment booking, dark mode, FAQ, gallery and testimonials.",
     "repo": "https://github.com/mahnoorimranawan22/clearvision-eye-care",
-    "demo": "https://mahnoorimranawan22.github.io/clearvision-eye-care/",
+    "demo": null,
     "coverImage": "projects/clearvision-eye-care.png",
     "tech": [
       "HTML5",
@@ -235,7 +235,7 @@
     "featured": false,
     "description": "A responsive restaurant website featuring the Foodix burger section — product cards, a shopping cart and a modern food-restaurant layout.",
     "repo": "https://github.com/mahnoorimranawan22/foodix-burger-website",
-    "demo": "https://mahnoorimranawan22.github.io/foodix-burger-website/",
+    "demo": null,
     "coverImage": "projects/foodix-burger-website.png",
     "tech": [
       "HTML",
@@ -257,7 +257,7 @@
     "featured": false,
     "description": "A professional calculator with a polished, responsive interface, built with HTML, CSS, JavaScript and Bootstrap.",
     "repo": "https://github.com/mahnoorimranawan22/smartcalc-pro",
-    "demo": "https://mahnoorimranawan22.github.io/smartcalc-pro/smartcalc.html",
+    "demo": null,
     "coverImage": "projects/smartcalc-pro.png",
     "tech": [
       "HTML5",
@@ -278,7 +278,7 @@
     "featured": false,
     "description": "My personal portfolio website — a responsive site with animated sections, skills, projects and an interactive full-stack showcase.",
     "repo": "https://github.com/mahnoorimranawan22/portfolio",
-    "demo": "https://mahnoorimranawan22.github.io/portfolio/",
+    "demo": null,
     "coverImage": "projects/portfolio-website.png",
     "tech": [
       "HTML5",

@@ -7,7 +7,7 @@ import {
 
 const EMPTY_PROJECT = {
     title: '', icon: '🚀', category: 'frontend', featured: false,
-    description: '', repo: '', demo: '', coverImage: '',
+    description: '', repo: '', coverImage: '',
     tech: [], features: [],
 };
 
@@ -133,7 +133,6 @@ export default function ProjectsAdmin() {
                                 <th>Project</th>
                                 <th>Category</th>
                                 <th>Tech</th>
-                                <th>Demo</th>
                                 <th className="admin-th-center">Featured</th>
                                 <th className="admin-th-right">Actions</th>
                             </tr>
@@ -156,15 +155,6 @@ export default function ProjectsAdmin() {
                                             {p.tech.slice(0, 3).map((t) => <span key={t}>{t}</span>)}
                                             {p.tech.length > 3 && <span className="admin-cell-more">+{p.tech.length - 3}</span>}
                                         </div>
-                                    </td>
-                                    <td>
-                                        {p.demo ? (
-                                            <a href={p.demo} target="_blank" rel="noopener noreferrer" className="admin-link">
-                                                <i className="fas fa-up-right-from-square" aria-hidden="true"></i>
-                                            </a>
-                                        ) : (
-                                            <span className="admin-muted">—</span>
-                                        )}
                                     </td>
                                     <td className="admin-th-center">
                                         {p.featured ? (
@@ -246,14 +236,6 @@ export default function ProjectsAdmin() {
                                     value={editing.repo}
                                     onChange={(e) => setEditing({ ...editing, repo: e.target.value })}
                                     placeholder="https://github.com/…"
-                                />
-                            </label>
-                            <label className="admin-field">
-                                <span>Live demo URL</span>
-                                <input
-                                    value={editing.demo}
-                                    onChange={(e) => setEditing({ ...editing, demo: e.target.value })}
-                                    placeholder="https://… (optional)"
                                 />
                             </label>
                             <label className="admin-field admin-field-span2">

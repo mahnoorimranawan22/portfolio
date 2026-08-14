@@ -3,10 +3,10 @@ import { api } from '../lib/api';
 
 /* All real projects from https://github.com/mahnoorimranawan22 — repos, links,
    descriptions, tech stacks and features are taken from the actual repositories.
-   Live demos point to real deployments (GitHub Pages / Netlify / Vercel).
-   The data lives in the shared data/projects.json (single source of truth) —
-   this component renders it immediately and upgrades it from the API when
-   the backend is reachable (fallback keeps the grid alive offline). */
+   Each card shows a real interface screenshot of the project. The data lives in
+   the shared data/projects.json (single source of truth) — this component
+   renders it immediately and upgrades it from the API when the backend is
+   reachable (fallback keeps the grid alive offline). */
 const GITHUB_BASE = 'https://github.com/mahnoorimranawan22';
 
 import PROJECTS_DATA from '../../data/projects.json';
@@ -238,16 +238,6 @@ export default function Projects() {
                                         >
                                             <i className="fab fa-github" aria-hidden="true"></i> View Code
                                         </a>
-                                        {project.demo && (
-                                            <a
-                                                href={project.demo}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="btn btn-primary btn-sm"
-                                            >
-                                                <i className="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
-                                            </a>
-                                        )}
                                         {project.caseStudy && (
                                             <button
                                                 type="button"
@@ -328,20 +318,6 @@ export default function Projects() {
                                     >
                                         <i className="fab fa-github" aria-hidden="true"></i> View Code
                                     </a>
-                                    {activeStudy.demo ? (
-                                        <a
-                                            href={activeStudy.demo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="btn btn-primary w-full text-center"
-                                        >
-                                            <i className="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
-                                        </a>
-                                    ) : (
-                                        <div className="btn btn-disabled w-full text-center opacity-50 cursor-not-allowed">
-                                            <i className="fas fa-video-slash" aria-hidden="true"></i> Demo Offline
-                                        </div>
-                                    )}
                                 </div>
                             </div>
 
