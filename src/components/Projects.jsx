@@ -18,16 +18,13 @@ const CATEGORIES = [
     { id: 'frontend', label: 'Frontend' },
 ];
 
-/* Live screenshot service for projects with a real deployed demo.
-   Falls back to a branded cover tile if the screenshot cannot load. */
-const screenshotUrl = (url) =>
-    `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=900&h=560`;
-
 function ProjectCover({ project }) {
     const [imgFailed, setImgFailed] = useState(false);
 
-    // Priority: local interface screenshot > live-demo screenshot > branded tile
-    const coverSrc = project.coverImage || (project.demo && screenshotUrl(project.demo));
+    // Relative cover paths resolve correctly both in dev (localhost/) and
+    // when served under a sub-path like GitHub Pages (/portfolio/). Root-
+    // absolute paths (/projects/...) would 404 on the sub-path deployment.
+    const coverSrc = project.coverImage || null;
 
     if (!coverSrc || imgFailed) {
         return (

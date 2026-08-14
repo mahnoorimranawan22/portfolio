@@ -83,7 +83,7 @@
     "description": "Full-stack task management platform with secure JWT authentication, a Node/Express REST API, MongoDB persistence and a responsive glassmorphism dashboard.",
     "repo": "https://github.com/mahnoorimranawan22/task-management-system",
     "demo": "https://task-management-system-noors.netlify.app/",
-    "coverImage": null,
+    "coverImage": "projects/task-management-system.png",
     "tech": [
       "Node.js",
       "Express.js",
@@ -121,7 +121,7 @@
     "description": "Weather dashboard streaming live Open-Meteo data — city search, geolocation and a 5-day forecast wrapped in a glassmorphism UI.",
     "repo": "https://github.com/mahnoorimranawan22/weather-app-pro",
     "demo": "https://weather-app-pro-noors.netlify.app/",
-    "coverImage": null,
+    "coverImage": "projects/weather-app-pro.png",
     "tech": [
       "HTML5",
       "CSS3",
@@ -144,7 +144,7 @@
     "description": "Production-ready task dashboard built with modern ES6+ JavaScript — local persistence, live statistics and real-time search.",
     "repo": "https://github.com/mahnoorimranawan22/todo-app-pro",
     "demo": "https://todo-app-pro-noors.netlify.app/",
-    "coverImage": null,
+    "coverImage": "projects/todo-app-pro.png",
     "tech": [
       "HTML5",
       "CSS3",
@@ -166,7 +166,7 @@
     "description": "Beginner-friendly full-stack counter with a Node/Express REST API, custom step sizes, counter history and keyboard shortcuts.",
     "repo": "https://github.com/mahnoorimranawan22/smart-counter-fullstack",
     "demo": "https://smart-counter-lime.vercel.app/",
-    "coverImage": null,
+    "coverImage": "projects/smart-counter.png",
     "tech": [
       "HTML5",
       "CSS3",
@@ -191,7 +191,7 @@
     "description": "A modern, responsive fashion store website with a clean and elegant UI for an online clothing store, built with HTML5 and CSS3.",
     "repo": "https://github.com/mahnoorimranawan22/aurelia-fashion-store",
     "demo": "https://mahnoorimranawan22.github.io/aurelia-fashion-store/",
-    "coverImage": null,
+    "coverImage": "projects/aurelia-fashion-store.png",
     "tech": [
       "HTML5",
       "CSS3",
@@ -214,7 +214,7 @@
     "description": "A premium, responsive eye care clinic website with appointment booking, dark mode, FAQ, gallery and testimonials.",
     "repo": "https://github.com/mahnoorimranawan22/clearvision-eye-care",
     "demo": "https://mahnoorimranawan22.github.io/clearvision-eye-care/",
-    "coverImage": null,
+    "coverImage": "projects/clearvision-eye-care.png",
     "tech": [
       "HTML5",
       "CSS3",
@@ -236,7 +236,7 @@
     "description": "A responsive restaurant website featuring the Foodix burger section — product cards, a shopping cart and a modern food-restaurant layout.",
     "repo": "https://github.com/mahnoorimranawan22/foodix-burger-website",
     "demo": "https://mahnoorimranawan22.github.io/foodix-burger-website/",
-    "coverImage": null,
+    "coverImage": "projects/foodix-burger-website.png",
     "tech": [
       "HTML",
       "CSS",
