@@ -40,9 +40,11 @@ export default function CanvasPlexus({ theme }) {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.vx = (Math.random() - 0.5) * 0.45;
-                this.vy = (Math.random() - 0.5) * 0.45;
+                this.size = Math.random() * 2.5 + 1;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.glowSize = this.size * 4;
+                this.usePrimary = Math.random() > 0.5;
             }
 
             update() {
@@ -58,23 +60,40 @@ export default function CanvasPlexus({ theme }) {
                     let dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < mouse.radius) {
                         const force = (mouse.radius - dist) / mouse.radius;
-                        this.x -= dx * force * 0.02;
-                        this.y -= dy * force * 0.02;
+                        this.x -= dx * force * 0.03;
+                        this.y -= dy * force * 0.03;
                     }
                 }
             }
 
             draw() {
+                const color = this.usePrimary ? primaryColor : secondaryColor;
+                
+                // Neon glow effect
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.glowSize
+                );
+                gradient.addColorStop(0, `rgba(${color}, 0.6)`);
+                gradient.addColorStop(0.4, `rgba(${color}, 0.2)`);
+                gradient.addColorStop(1, `rgba(${color}, 0)`);
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.glowSize, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // Core bright dot
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${secondaryColor}, 0.45)`;
+                ctx.fillStyle = `rgba(${color}, 0.9)`;
                 ctx.fill();
             }
         }
 
         const setupParticles = () => {
             particles = [];
-            const number = Math.min(100, Math.floor(window.innerWidth / 12));
+            const number = Math.min(120, Math.floor(window.innerWidth / 10));
             for (let i = 0; i < number; i++) {
                 particles.push(new Particle());
             }
@@ -91,14 +110,18 @@ export default function CanvasPlexus({ theme }) {
                     let dy = particles[a].y - particles[b].y;
                     let dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (dist < 110) {
-                        opacity = 1 - (dist / 110);
-                        ctx.strokeStyle = `rgba(${primaryColor}, ${opacity * 0.16})`;
-                        ctx.lineWidth = 1;
+                    if (dist < 120) {
+                        opacity = 1 - (dist / 120);
+                        const lineColor = (a % 2 === 0) ? primaryColor : secondaryColor;
+                        ctx.strokeStyle = `rgba(${lineColor}, ${opacity * 0.25})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.shadowBlur = 5;
+                        ctx.shadowColor = `rgba(${lineColor}, 0.3)`;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
                         ctx.lineTo(particles[b].x, particles[b].y);
                         ctx.stroke();
+                        ctx.shadowBlur = 0;
                     }
                 }
             }
