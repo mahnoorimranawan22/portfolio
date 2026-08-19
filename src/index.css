@@ -1472,6 +1472,7 @@ body {
     box-shadow var(--dur-med) var(--ease-out),
     border-color var(--dur-med) var(--ease-out),
     background-color var(--dur-med) ease;
+  background: var(--surface-1);
 }
 
 .project-card:hover {
@@ -1508,6 +1509,8 @@ body {
   flex-direction: column;
   flex: 1;
   padding: var(--space-6);
+  background: var(--surface-1);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
 }
 
 .project-body h3 {
@@ -1562,6 +1565,19 @@ body {
     linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 60%),
     var(--surface-2);
   border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Bottom fade gradient for smooth transition to card body */
+.project-cover::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, var(--surface-1) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .project-cover img {
@@ -1665,10 +1681,11 @@ body {
   height: 100%;
   border: none;
   pointer-events: none;
-  transform: scale(1.0);
+  transform: scale(1.15);
   transform-origin: top center;
   position: absolute;
   inset: 0;
+  margin-top: -10px;
 }
 
 /* Browser chrome bar */
@@ -1682,10 +1699,11 @@ body {
   align-items: center;
   gap: var(--space-3);
   padding: 0.5rem 0.75rem;
-  background: rgba(10, 11, 13, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(15, 17, 22, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .browser-dots {
@@ -1708,8 +1726,8 @@ body {
   gap: 0.35rem;
   padding: 0.3rem 0.65rem;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   min-width: 0;
 }
@@ -2872,8 +2890,9 @@ body {
   }
 
   .project-iframe {
-    transform: scale(0.55);
+    transform: scale(0.85);
     transform-origin: top center;
+    margin-top: -8px;
   }
 
   .browser-chrome {
@@ -3059,8 +3078,9 @@ body {
   }
 
   .project-iframe {
-    transform: scale(0.42);
+    transform: scale(0.7);
     transform-origin: top center;
+    margin-top: -6px;
   }
 
   .browser-chrome {
