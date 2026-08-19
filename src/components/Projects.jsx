@@ -18,86 +18,7 @@ const CATEGORIES = [
     { id: 'frontend', label: 'Frontend' },
 ];
 
-/* Category → colour mapping for the browser-chrome accent dots */
-const CATEGORY_COLORS = {
-    ai: '#f59e0b',
-    fullstack: '#10b981',
-    frontend: '#3b82f6',
-};
 
-/* Browser-frame mockup showing a desktop screenshot of the live interface */
-function BrowserPreview({ project }) {
-    const demoUrl = project.demo;
-    const screenshotUrl = project.screenshot;
-    const hasDemo = Boolean(demoUrl);
-    const hasScreenshot = Boolean(screenshotUrl);
-
-    return (
-        <div className="project-cover">
-            {hasScreenshot ? (
-                <img
-                    src={screenshotUrl}
-                    alt={`${project.title} — desktop interface preview`}
-                    className="project-screenshot"
-                    loading="lazy"
-                    width="900"
-                    height="700"
-                />
-            ) : hasDemo ? (
-                <div className="project-cover-fallback">
-                    <span className="banner-icon">{project.icon}</span>
-                </div>
-            ) : (
-                <div className="project-cover-fallback">
-                    <span className="banner-icon">{project.icon}</span>
-                </div>
-            )}
-
-            {/* Browser chrome overlay — always visible */}
-            <div className="browser-chrome">
-                <div className="browser-dots">
-                    <span className="dot-red" style={{ background: '#ff5f57' }} />
-                    <span className="dot-yellow" style={{ background: '#febc2e' }} />
-                    <span className="dot-green" style={{ background: '#28c840' }} />
-                </div>
-                <div className="browser-url-bar">
-                    <i className="fas fa-lock" style={{ fontSize: '0.6rem', color: 'var(--text-faint)' }} />
-                    <span className="browser-url-text">
-                        {hasDemo ? demoUrl.replace('https://', '') : 'No live demo'}
-                    </span>
-                </div>
-                <div className="browser-actions">
-                    {hasDemo && (
-                        <a
-                            href={demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="browser-live-badge"
-                            title="Open live demo"
-                        >
-                            <span className="live-dot" />
-                            Live
-                        </a>
-                    )}
-                </div>
-            </div>
-
-            {/* Hover overlay with CTA */}
-            {hasDemo && (
-                <a
-                    href={demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-preview-overlay"
-                    aria-label={`Open ${project.title} live demo`}
-                >
-                    <i className="fas fa-external-link-alt" />
-                    <span>Open Live Demo</span>
-                </a>
-            )}
-        </div>
-    );
-}
 
 export default function Projects() {
     const [filter, setFilter] = useState('all');
@@ -282,8 +203,11 @@ export default function Projects() {
                                 key={project.title}
                                 style={{ '--reveal-delay': `${(index % 3) * 0.08}s` }}
                             >
-                                {/* Browser mockup preview */}
-                                <BrowserPreview project={project} />
+                                <div className="project-cover">
+                                    <div className="project-cover-fallback">
+                                        <span className="banner-icon">{project.icon}</span>
+                                    </div>
+                                </div>
 
                                 <div className="project-body">
                                     {project.featured && (
