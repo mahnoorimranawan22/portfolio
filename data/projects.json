@@ -7,6 +7,7 @@
     "description": "Practice technical interviews with an AI interviewer powered by Groq’s LLM — answer real questions and get instant, adaptive feedback.",
     "repo": "https://github.com/mahnoorimranawan22/ai-interview-coach",
     "demo": "https://ai-interviewwcoach.netlify.app/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://ai-interviewwcoach.netlify.app/",
     "coverImage": null,
     "tech": [
       "React 19",
@@ -45,6 +46,7 @@
     "description": "AI-powered study assistant combining a learning dashboard, interactive AI chat and built-in interview practice in one installable app.",
     "repo": "https://github.com/mahnoorimranawan22/AI-StudyMate",
     "demo": "https://ai-study-mate-knx470vmx-mahnoorimranawan22-1021s-projects.vercel.app/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://ai-study-mate-knx470vmx-mahnoorimranawan22-1021s-projects.vercel.app/",
     "coverImage": null,
     "tech": [
       "JavaScript",
@@ -83,6 +85,7 @@
     "description": "Full-stack task management platform with secure JWT authentication, a Node/Express REST API, MongoDB persistence and a responsive glassmorphism dashboard.",
     "repo": "https://github.com/mahnoorimranawan22/task-management-system",
     "demo": "https://mahnoorimranawan22.github.io/task-management-system/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/task-management-system/",
     "coverImage": null,
     "tech": [
       "Node.js",
@@ -121,6 +124,7 @@
     "description": "Weather dashboard streaming live Open-Meteo data — city search, geolocation and a 5-day forecast wrapped in a glassmorphism UI.",
     "repo": "https://github.com/mahnoorimranawan22/weather-app-pro",
     "demo": "https://mahnoorimranawan22.github.io/weather-app-pro/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/weather-app-pro/",
     "coverImage": null,
     "tech": [
       "HTML5",
@@ -144,6 +148,7 @@
     "description": "Production-ready task dashboard built with modern ES6+ JavaScript — local persistence, live statistics and real-time search.",
     "repo": "https://github.com/mahnoorimranawan22/todo-app-pro",
     "demo": "https://mahnoorimranawan22.github.io/todo-app-pro/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/todo-app-pro/",
     "coverImage": null,
     "tech": [
       "HTML5",
@@ -166,6 +171,7 @@
     "description": "Beginner-friendly full-stack counter with a Node/Express REST API, custom step sizes, counter history and keyboard shortcuts.",
     "repo": "https://github.com/mahnoorimranawan22/smart-counter-fullstack",
     "demo": "https://mahnoorimranawan22.github.io/smart-counter-fullstack/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/smart-counter-fullstack/",
     "coverImage": null,
     "tech": [
       "HTML5",
@@ -191,6 +197,7 @@
     "description": "A modern, responsive fashion store website with a clean and elegant UI for an online clothing store, built with HTML5 and CSS3.",
     "repo": "https://github.com/mahnoorimranawan22/aurelia-fashion-store",
     "demo": "https://mahnoorimranawan22.github.io/aurelia-fashion-store/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/aurelia-fashion-store/",
     "coverImage": null,
     "tech": [
       "HTML5",
@@ -214,6 +221,7 @@
     "description": "A premium, responsive eye care clinic website with appointment booking, dark mode, FAQ, gallery and testimonials.",
     "repo": "https://github.com/mahnoorimranawan22/clearvision-eye-care",
     "demo": "https://mahnoorimranawan22.github.io/clearvision-eye-care/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/clearvision-eye-care/",
     "coverImage": null,
     "tech": [
       "HTML5",
@@ -236,6 +244,7 @@
     "description": "A responsive restaurant website featuring the Foodix burger section — product cards, a shopping cart and a modern food-restaurant layout.",
     "repo": "https://github.com/mahnoorimranawan22/foodix-burger-website",
     "demo": "https://mahnoorimranawan22.github.io/foodix-burger-website/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/foodix-burger-website/",
     "coverImage": null,
     "tech": [
       "HTML",
@@ -258,6 +267,7 @@
     "description": "A professional calculator with a polished, responsive interface, built with HTML, CSS, JavaScript and Bootstrap.",
     "repo": "https://github.com/mahnoorimranawan22/smartcalc-pro",
     "demo": "https://mahnoorimranawan22.github.io/smartcalc-pro/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/smartcalc-pro/",
     "coverImage": null,
     "tech": [
       "HTML5",
@@ -279,6 +289,7 @@
     "description": "My personal portfolio website — a responsive site with animated sections, skills, projects and an interactive full-stack showcase.",
     "repo": "https://github.com/mahnoorimranawan22/portfolio",
     "demo": "https://mahnoorimranawan22.github.io/portfolio/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/portfolio/",
     "coverImage": null,
     "tech": [
       "HTML5",

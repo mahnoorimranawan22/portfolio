@@ -25,22 +25,28 @@ const CATEGORY_COLORS = {
     frontend: '#3b82f6',
 };
 
-/* Minimal browser-frame mockup showing the live interface */
+/* Browser-frame mockup showing a desktop screenshot of the live interface */
 function BrowserPreview({ project }) {
     const demoUrl = project.demo;
+    const screenshotUrl = project.screenshot;
     const hasDemo = Boolean(demoUrl);
+    const hasScreenshot = Boolean(screenshotUrl);
 
     return (
         <div className="project-cover">
-            {hasDemo ? (
-                <iframe
-                    src={demoUrl}
-                    title={`${project.title} live preview`}
-                    className="project-iframe"
+            {hasScreenshot ? (
+                <img
+                    src={screenshotUrl}
+                    alt={`${project.title} — desktop interface preview`}
+                    className="project-screenshot"
                     loading="lazy"
-                    sandbox="allow-scripts allow-same-origin"
-                    tabIndex={-1}
+                    width="900"
+                    height="700"
                 />
+            ) : hasDemo ? (
+                <div className="project-cover-fallback">
+                    <span className="banner-icon">{project.icon}</span>
+                </div>
             ) : (
                 <div className="project-cover-fallback">
                     <span className="banner-icon">{project.icon}</span>
