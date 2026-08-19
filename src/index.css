@@ -32,29 +32,29 @@
    01. DESIGN TOKENS
    ========================================================================== */
 :root {
-  /* ── Brand palette (vibrant crimson red → rose on charcoal) ── */
-  --brand-300: #fca5a5;
-  --brand-400: #f87171;
-  --brand-500: #ef4444;
-  /* primary crimson */
-  --brand-600: #dc2626;
-  --brand-700: #b91c1c;
+  /* ── Brand palette (electric cyan → purple neon on dark) ── */
+  --brand-300: #67e8f9;
+  --brand-400: #22d3ee;
+  --brand-500: #06b6d4;
+  /* primary cyan */
+  --brand-600: #0891b2;
+  --brand-700: #0e7490;
 
-  --lime-300: #fecaca;
-  --lime-400: #fda4af;
-  /* secondary soft rose */
-  --lime-500: #e11d48;
-  --lime-600: #be123c;
+  --lime-300: #d8b4fe;
+  --lime-400: #c084fc;
+  /* secondary soft purple */
+  --lime-500: #a855f7;
+  --lime-600: #9333ea;
 
-  --coral-400: #dc2626;
-  --coral-500: #b91c1c;
-  /* deep crimson for CTA highlights */
-  --coral-600: #991b1b;
+  --coral-400: #22d3ee;
+  --coral-500: #06b6d4;
+  /* deep cyan for CTA highlights */
+  --coral-600: #0891b2;
 
-  /* Rose-red aliases (chips, terminal status, status dots) */
-  --emerald-300: #fecaca;
-  --emerald-400: #f87171;
-  --emerald-500: #ef4444;
+  /* Neon aliases (chips, terminal status, status dots) */
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
 
   --danger-400: #f87171;
   --danger-500: #ef4444;
@@ -63,11 +63,11 @@
 
   /* ── Semantic aliases ── */
   --primary: var(--brand-500);
-  --primary-rgb: 239, 68, 68;
+  --primary-rgb: 6, 182, 212;
   --secondary: var(--lime-500);
-  --secondary-rgb: 225, 29, 72;
+  --secondary-rgb: 168, 85, 247;
   --accent: var(--coral-500);
-  --accent-rgb: 185, 28, 28;
+  --accent-rgb: 6, 182, 212;
 
   /* ── Surface scale (dark charcoal) ── */
   --surface-0: #0a0b0d;
@@ -164,6 +164,7 @@
   --gradient-brand: linear-gradient(135deg, var(--brand-500) 0%, var(--secondary) 100%);
   --gradient-text: linear-gradient(120deg, var(--brand-300), var(--secondary) 60%, var(--brand-400));
   --gradient-surface: linear-gradient(160deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --neon-glow: 0 0 20px rgba(var(--primary-rgb), 0.4), 0 0 40px rgba(var(--primary-rgb), 0.2);
 
   /* ── Motion ── */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -204,18 +205,18 @@
   --border-soft: rgba(26, 28, 30, 0.12);
   --border-strong: rgba(26, 28, 30, 0.24);
 
-  --primary-rgb: 220, 38, 38;
-  /* Red 600 */
-  --secondary-rgb: 190, 18, 60;
-  /* Rose 700 */
+  --primary-rgb: 8, 145, 178;
+  /* Cyan 600 */
+  --secondary-rgb: 147, 51, 234;
+  /* Purple 600 */
 
-  --brand-300: #f87171;
-  --brand-400: #dc2626;
-  --brand-500: #b91c1c;
+  --brand-300: #67e8f9;
+  --brand-400: #06b6d4;
+  --brand-500: #0891b2;
 
-  --secondary: #be123c;
-  --accent: #991b1b;
-  /* Deep crimson */
+  --secondary: #9333ea;
+  --accent: #0891b2;
+  /* Deep cyan */
 }
 
 :root[data-theme="light"] .navbar-shell {
@@ -490,7 +491,8 @@ section {
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(var(--secondary-rgb), 0.45);
+  box-shadow: 0 14px 40px rgba(var(--primary-rgb), 0.45),
+              0 0 20px rgba(var(--primary-rgb), 0.3);
 }
 
 .btn-primary:hover::after {
@@ -2665,6 +2667,161 @@ body {
     opacity: 0;
   }
 }
+
+/* ==========================================================================
+   18b. NEON ANIMATIONS
+   ========================================================================== */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(var(--primary-rgb), 0.5),
+                0 0 10px rgba(var(--primary-rgb), 0.3),
+                0 0 20px rgba(var(--primary-rgb), 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.7),
+                0 0 20px rgba(var(--primary-rgb), 0.5),
+                0 0 40px rgba(var(--primary-rgb), 0.3);
+  }
+}
+
+@keyframes neon-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(var(--primary-rgb), 0.8),
+                 0 0 20px rgba(var(--primary-rgb), 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(var(--primary-rgb), 1),
+                 0 0 40px rgba(var(--primary-rgb), 0.7),
+                 0 0 60px rgba(var(--primary-rgb), 0.4);
+  }
+}
+
+@keyframes card-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(var(--primary-rgb), 0.3);
+  }
+}
+
+@keyframes gradient-rotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px) rotate(180deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px) rotate(270deg);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Neon button hover effect */
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: all 0.5s;
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+/* Card hover glow */
+.glass-panel:hover {
+  box-shadow: var(--shadow-md),
+              0 0 20px rgba(var(--primary-rgb), 0.2),
+              0 0 40px rgba(var(--primary-rgb), 0.1);
+}
+
+/* Neon text effect */
+.neon-text {
+  animation: neon-glow 2s ease-in-out infinite;
+}
+
+/* Staggered animation helper */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
 
 /* ==========================================================================
    19. UTILITIES
