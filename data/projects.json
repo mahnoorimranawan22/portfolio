@@ -45,8 +45,8 @@
     "featured": true,
     "description": "AI-powered study assistant combining a learning dashboard, interactive AI chat and built-in interview practice in one installable app.",
     "repo": "https://github.com/mahnoorimranawan22/AI-StudyMate",
-    "demo": "https://ai-study-mate-knx470vmx-mahnoorimranawan22-1021s-projects.vercel.app/",
-    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://mahnoorimranawan22.github.io/AI-StudyMate/",
+    "demo": "https://ai-study-mate-uset.vercel.app/",
+    "screenshot": "https://image.thum.io/get/width/900/crop/700/https://ai-study-mate-uset.vercel.app/",
     "coverImage": null,
     "tech": [
       "JavaScript",
