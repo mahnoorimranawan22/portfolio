@@ -3,7 +3,7 @@ import { api } from '../lib/api';
 
 /* All real projects from https://github.com/mahnoorimranawan22 — repos, links,
    descriptions, tech stacks and features are taken from the actual repositories.
-   Each card shows a real interface screenshot of the project. The data lives in
+   Each card shows a real interface preview of the project. The data lives in
    the shared data/projects.json (single source of truth) — this component
    renders it immediately and upgrades it from the API when the backend is
    reachable (fallback keeps the grid alive offline). */
@@ -17,6 +17,81 @@ const CATEGORIES = [
     { id: 'fullstack', label: 'Full-Stack' },
     { id: 'frontend', label: 'Frontend' },
 ];
+
+/* Category → colour mapping for the browser-chrome accent dots */
+const CATEGORY_COLORS = {
+    ai: '#f59e0b',
+    fullstack: '#10b981',
+    frontend: '#3b82f6',
+};
+
+/* Minimal browser-frame mockup showing the live interface */
+function BrowserPreview({ project }) {
+    const demoUrl = project.demo;
+    const hasDemo = Boolean(demoUrl);
+
+    return (
+        <div className="project-cover">
+            {hasDemo ? (
+                <iframe
+                    src={demoUrl}
+                    title={`${project.title} live preview`}
+                    className="project-iframe"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin"
+                    tabIndex={-1}
+                />
+            ) : (
+                <div className="project-cover-fallback">
+                    <span className="banner-icon">{project.icon}</span>
+                </div>
+            )}
+
+            {/* Browser chrome overlay — always visible */}
+            <div className="browser-chrome">
+                <div className="browser-dots">
+                    <span className="dot-red" style={{ background: '#ff5f57' }} />
+                    <span className="dot-yellow" style={{ background: '#febc2e' }} />
+                    <span className="dot-green" style={{ background: '#28c840' }} />
+                </div>
+                <div className="browser-url-bar">
+                    <i className="fas fa-lock" style={{ fontSize: '0.6rem', color: 'var(--text-faint)' }} />
+                    <span className="browser-url-text">
+                        {hasDemo ? demoUrl.replace('https://', '') : 'No live demo'}
+                    </span>
+                </div>
+                <div className="browser-actions">
+                    {hasDemo && (
+                        <a
+                            href={demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="browser-live-badge"
+                            title="Open live demo"
+                        >
+                            <span className="live-dot" />
+                            Live
+                        </a>
+                    )}
+                </div>
+            </div>
+
+            {/* Hover overlay with CTA */}
+            {hasDemo && (
+                <a
+                    href={demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-preview-overlay"
+                    aria-label={`Open ${project.title} live demo`}
+                >
+                    <i className="fas fa-external-link-alt" />
+                    <span>Open Live Demo</span>
+                </a>
+            )}
+        </div>
+    );
+}
 
 export default function Projects() {
     const [filter, setFilter] = useState('all');
@@ -201,6 +276,9 @@ export default function Projects() {
                                 key={project.title}
                                 style={{ '--reveal-delay': `${(index % 3) * 0.08}s` }}
                             >
+                                {/* Browser mockup preview */}
+                                <BrowserPreview project={project} />
+
                                 <div className="project-body">
                                     {project.featured && (
                                         <span className="featured-badge-tag">
@@ -230,6 +308,16 @@ export default function Projects() {
                                     </div>
 
                                     <div className="project-links">
+                                        {project.demo && (
+                                            <a
+                                                href={project.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-primary btn-sm project-demo-btn"
+                                            >
+                                                <i className="fas fa-rocket" aria-hidden="true"></i> Live Demo
+                                            </a>
+                                        )}
                                         <a
                                             href={project.repo}
                                             target="_blank"
@@ -310,6 +398,16 @@ export default function Projects() {
                                     </div>
                                 </div>
                                 <div className="case-study-sidebar-links">
+                                    {activeStudy.demo && (
+                                        <a
+                                            href={activeStudy.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn btn-primary w-full text-center"
+                                        >
+                                            <i className="fas fa-rocket" aria-hidden="true"></i> Live Demo
+                                        </a>
+                                    )}
                                     <a
                                         href={activeStudy.repo}
                                         target="_blank"
