@@ -203,12 +203,6 @@ export default function Projects() {
                                 key={project.title}
                                 style={{ '--reveal-delay': `${(index % 3) * 0.08}s` }}
                             >
-                                <div className="project-cover">
-                                    <div className="project-cover-fallback">
-                                        <span className="banner-icon">{project.icon}</span>
-                                    </div>
-                                </div>
-
                                 <div className="project-body">
                                     {project.featured && (
                                         <span className="featured-badge-tag">
